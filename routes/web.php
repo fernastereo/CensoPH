@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/fetch', 'DynamicDependent@fetch');
+Route::get('/findsomething', 'DynamicDependent@findsomething');
+Route::get('/verify/{token}', 'DynamicDependent@verify')->name('verify');

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\RequestNewUser;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'property_id', 'token',
     ];
 
     /**
@@ -26,4 +27,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function verified(){
+        return $this->token === null;
+    }
+
+    public function sendVerificationEmail(){
+        $this->notify(new RequestNewUser($this));
+    }
 }

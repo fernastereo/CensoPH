@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         	]);
 
         $properties->each(function(App\Property $property) use ($properties){
-        	$users = factory(App\User::class)
-        		->times(1)
-        		->create([
-        			'property_id' => $property->id,
-        		]);
+        	// $users = factory(App\User::class)
+        	// 	->times(1)
+        	// 	->create([
+        	// 		'property_id' => $property->id,
+        	// 	]);
 
         	$habitants = factory(App\Habitant::class, random_int(2, 6))
         		->create([
