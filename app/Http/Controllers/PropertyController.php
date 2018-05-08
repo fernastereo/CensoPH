@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Property;
+use App\User;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\UpdatePropertyRequest;
 class PropertyController extends Controller
 {
     /**
@@ -46,7 +47,7 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        //
+        return view('properties.show', ['property' => $property]);
     }
 
     /**
@@ -57,7 +58,9 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        //
+        $property = Property::find($property->id);
+        // dd($property->user->name);
+        return view('properties.edit', ['property' => $property]);
     }
 
     /**
@@ -67,9 +70,35 @@ class PropertyController extends Controller
      * @param  \App\Property  $property
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Property $property)
+    public function update(UpdatePropertyRequest $request, Property $property)
     {
-        //
+        // dd($request->input('user_birthdate'));
+        $property->update([
+            'phone_number'  => $request->input('phone_number'),
+            'rent_agency'   => $request->input('rent_agency'),
+            'move_date'     => $request->input('move_date'),
+            'idnumber'      => $request->input('idnumber'),
+            'coefficient'   => $request->input('coefficient'),
+            'area'          => $request->input('area'),
+            'live_householder'  => $request->has('live_householder'),
+        ]);
+
+        $user = User::where('property_id', $property->id)->update([
+            'name'          => $request->input('user_name'),
+            'email'         => $request->input('user_email'),
+            'idnumber'      => $request->input('user_idnumber'),
+            'notification_address'  => $request->input('user_address'),
+            'cellphone_number'      => $request->input('user_cellphone'),
+            'birthdate'             => $request->input('user_birthdate'),
+            'occupation'            => $request->input('user_occupation'),
+        ]);
+
+
+        if($property){
+            return redirect()->route('properties.edit', ['property' => $property])->with('success', 'Propiedad Actualizada Satisfactoriamente');
+        }
+
+        return back()->withInput()->with('errors', 'Se produjeron errores al guardar');
     }
 
     /**

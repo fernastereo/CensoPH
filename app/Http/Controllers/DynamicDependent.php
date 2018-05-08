@@ -33,4 +33,9 @@ class DynamicDependent extends Controller
             ->with('success', 'Cuenta Verificada!');
     }
 
+    public function reSendVerification(User $user){
+        $user->sendVerificationEmail();
+
+        return back()->withInput()->with('msg', 'Se ha enviado un e-mail de verificación a la direccion suministrada en el registro');
+    }
 }

@@ -50,7 +50,11 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Mis Datos</a>
+                                    @if(auth()->user()->verified())
+                                        <a class="dropdown-item" href="{{ route('properties.edit', Auth::user()->property_id) }}">Mi Propiedad</a>
+                                    @else
+                                        <a class="dropdown-item" href="#">Usuario No verificado</a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

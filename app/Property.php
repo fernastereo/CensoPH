@@ -13,12 +13,28 @@ class Property extends Model
         'live_householder',
         'rent_agency',
         'move_date',
-        'id_number',
+        'idnumber',
         'coefficient',
         'area',
 	];
 	
     public function tower(){
     	return $this->belongsto(Tower::class);
+    }
+
+    public function habitants(){
+        return $this->hasMany(Habitant::class);
+    }
+
+    public function vehicles(){
+        return $this->hasMany(Vehicle::class);
+    }
+
+    public function pets(){
+        return $this->hasMany(Pet::class);
+    }
+
+    public function user(){
+        return $this->hasOne(User::class);
     }
 }

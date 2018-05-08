@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'property_id', 'token',
+        'name', 'email', 'password', 'property_id', 'token', 'idnumber', 'notification_address', 'cellphone_number', 'birthdate', 'occupation',
     ];
 
     /**
@@ -34,5 +34,9 @@ class User extends Authenticatable
 
     public function sendVerificationEmail(){
         $this->notify(new RequestNewUser($this));
+    }
+
+    public function property(){
+        return $this->hasOne(Property::class);
     }
 }

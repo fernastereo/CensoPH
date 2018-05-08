@@ -22,3 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/fetch', 'DynamicDependent@fetch');
 Route::get('/findsomething', 'DynamicDependent@findsomething');
 Route::get('/verify/{token}', 'DynamicDependent@verify')->name('verify');
+Route::get('/sendverification/{user}', 'DynamicDependent@reSendVerification')->name('resend');
+
+Route::resource('properties', 'PropertyController');
+Route::get('habitants/create/{property_id}', 'HabitantController@create')->name('habitants.createh'); //el ? indica que es opcional el parametro
+Route::resource('habitants', 'HabitantController');
+Route::delete('habitants/{habitant}', 'HabitantController@destroy');

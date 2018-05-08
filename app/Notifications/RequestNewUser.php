@@ -43,10 +43,12 @@ class RequestNewUser extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->greeting('Hola ' . $notifiable->name)
                     ->subject('Verifique su usuario')
-                    ->line('Por favor verifique su e-mail para continuar.')
+                    ->line('Por favor verifique su e-mail para continuar y tener acceso al espacio del Edificio Multifamiliar San Fernando Del Tabor - Barranquilla.')
                     ->action('Verificar E-mail', route('verify', $this->newUser->token))
-                    ->line('Gracias por usar nuestro producto!');
+                    ->line('Gracias por usar nuestro producto!')
+                    ->salutation('Administración - San Fernando Del Tabor');
     }
 
     /**
