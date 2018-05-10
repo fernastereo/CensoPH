@@ -15,6 +15,7 @@ class Habitant extends Model
 		'cellphone_number',
 		'relationship_id',
 		'idnumber',
+		'active',
 	];
 
     public function property(){

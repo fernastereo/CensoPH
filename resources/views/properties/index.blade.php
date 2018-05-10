@@ -5,7 +5,10 @@
   <div class="row justify-content-center">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header">Edificio Multifamiliar San Fernando Del Tabor</div>
+        <div class="card-header d-flex justify-content-between">
+          <div>Edificio Multifamiliar San Fernando Del Tabor</div>
+          {{-- <a href="" class="btn btn-primary">Crear Propiedad</a> --}}{{-- {{ route('properties.edit') }} --}}
+        </div>
 
         <div class="card-body">
           @if (session('status'))
@@ -13,23 +16,10 @@
               {{ session('status') }}
             </div>
           @endif
-          @include('partials.errors')      
-          <div class="col-md-12">
-            <p>Bienvenido {{ auth()->user()->name }}.</p>
-            <p>El estado de su cuenta es: 
-              @if(auth()->user()->verified())
-                <strong>Verificado</strong>
-              @else
-                <strong>No Verificado</strong>
-                <br>
-                Si aun no ha recibido el e-mail de virificación por favor haga <a href="{{ route('resend', auth()->user()) }}">clik aqui </a>
-              @endif
-            </p>
-            @include('partials.msg')
-          </div>
+          @include('partials.errors')
 
           <div class="col-md-12">
-            <table class="table table-hover">
+            <table class="table table-sm table-hover">
               <thead>
                 <tr class="text-center">
                   <th scope="col">Torre</th>
@@ -37,6 +27,8 @@
                   <th scope="col">Area</th>
                   <th scope="col">Coeficiente</th>
                   <th scope="col">Matrícula</th>
+                  <th scope="col">Registrado</th>
+                  <th scope="col">Censado</th>
                   <th scope="col">Acciones</th>
                 </tr>
               </thead>
@@ -48,9 +40,13 @@
                     <td>{{ number_format($property->area, 2, ',', '.') }}</td>
                     <td>{{ number_format($property->coefficient, 5, ',', '.') }}</td>
                     <td>{{ $property->idnumber }}</td>
+                    <td>@if($property->registered == true)<span class="badge badge-success">Registrado</span>@else <span class="badge badge-danger">No Registrado</span>@endif</td>
+                    <td>@if($property->updated == true)<span class="badge badge-success">Censado</span>@else <span class="badge badge-danger">No Censado</span>@endif</td>
                     <td>
-                      {{-- <a href="{{ route('properties.show', $property->id) }}" class="btn btn-primary btn-sm">Consultar</a> --}} 
-                      <a href="{{ route('properties.edit', $property->id) }}" class="btn btn-success btn-sm">Actualizar</a> 
+                      <a href="{{ route('properties.show', $property->id) }}" title="Ver Detalle de la Propiedad"><i class="fas fa-eye"></i></a> 
+                      {{-- <a href="{{ route('properties.edit', $property->id) }}" title="Editar Propiedad"><i class="fas fa-edit"></i></a>  --}}
+                      <a href="#" title="Enviar Comunicación"><i class="far fa-envelope"></i></i></a> 
+                      <a href="#" title="Enviar Contraseña por Correo"><i class="fas fa-unlock-alt"></i></a> 
                     </td>
                   </tr>
                 @empty
@@ -59,6 +55,9 @@
               </tbody>
             </table>
           </div>
+        </div>
+        <div class="card-footer">
+          {{ $properties->links() }}
         </div>
       </div>
     </div>

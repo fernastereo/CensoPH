@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
@@ -41,19 +42,21 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                            <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                            <li><a class="nav-link" href="{{ route('register') }}">Solicitar Usuario</a></li>
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
+                                
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    @if(auth()->user()->verified())
-                                        <a class="dropdown-item" href="{{ route('properties.edit', Auth::user()->property_id) }}">Mi Propiedad</a>
-                                    @else
-                                        <a class="dropdown-item" href="#">Usuario No verificado</a>
+                                    @if(auth()->user()->profile_id == 2)
+                                        @if(auth()->user()->verified())
+                                            <a class="dropdown-item" href="{{ route('properties.edit', Auth::user()->property_id) }}">Mi Propiedad</a>
+                                        @else
+                                            <a class="dropdown-item" href="#">Usuario No verificado</a>
+                                        @endif
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

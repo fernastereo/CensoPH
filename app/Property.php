@@ -16,6 +16,8 @@ class Property extends Model
         'idnumber',
         'coefficient',
         'area',
+        'registered',
+        'updated',
 	];
 	
     public function tower(){

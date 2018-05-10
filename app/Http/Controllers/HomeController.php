@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Property;
-use App\Habitant;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,8 +24,14 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $properties = Property::where('id', Auth::user()->property_id)->get();
-        return view('home', ['properties' => $properties]);
+    {   
+        if(Auth::user()->profile_id == 2){
+            $properties = Property::where('id', Auth::user()->property_id)->get();
+            return view('home', ['properties' => $properties]);
+        }
+
+        $properties = Property::orderBy('tower_id', 'asc')->paginate(15);
+        
+        return view('properties.index', ['properties' => $properties]);
     }
 }

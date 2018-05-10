@@ -11,6 +11,8 @@ class Vehicle extends Model
     	'color',
     	'mark',
     	'property_id',
+    	'active',
+        'motorcycle',
     ];
 
     public function property(){

@@ -17,14 +17,27 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function(){
+	Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/fetch', 'DynamicDependent@fetch');
-Route::get('/findsomething', 'DynamicDependent@findsomething');
-Route::get('/verify/{token}', 'DynamicDependent@verify')->name('verify');
-Route::get('/sendverification/{user}', 'DynamicDependent@reSendVerification')->name('resend');
+	Route::get('/fetch', 'DynamicDependent@fetch');
+	Route::get('/findsomething', 'DynamicDependent@findsomething');
+	Route::get('/findallhabitants', 'DynamicDependent@findallhabitants');
+	Route::get('/findinactivehabitants', 'DynamicDependent@findinactivehabitants');
+	Route::get('/verify/{token}', 'DynamicDependent@verify')->name('verify');
+	Route::get('/sendverification/{user}', 'DynamicDependent@reSendVerification')->name('resend');
 
-Route::resource('properties', 'PropertyController');
-Route::get('habitants/create/{property_id}', 'HabitantController@create')->name('habitants.createh'); //el ? indica que es opcional el parametro
-Route::resource('habitants', 'HabitantController');
-Route::delete('habitants/{habitant}', 'HabitantController@destroy');
+	Route::resource('properties', 'PropertyController');
+
+	Route::get('/habitants/create/{property_id}', 'HabitantController@create')->name('habitants.createh'); //el ? indica que es opcional el parametro
+	Route::get('/habitants/{habitant}/active', 'HabitantController@active')->name('habitants.active');
+	Route::resource('habitants', 'HabitantController');
+
+	Route::get('/vehicles/create/{property_id}', 'VehicleController@create')->name('vehicles.createh');
+	Route::get('/vehicles/{vehicle}/active', 'VehicleController@active')->name('vehicles.active');
+	Route::resource('vehicles', 'VehicleController');
+
+	Route::get('/pets/create/{property_id}', 'PetController@create')->name('pets.createh');
+	Route::get('/pets/{pet}/active', 'PetController@active')->name('pets.active');
+	Route::resource('pets', 'PetController');	
+});

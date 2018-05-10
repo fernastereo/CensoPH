@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Property;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdatePropertyRequest;
 class PropertyController extends Controller
@@ -59,8 +60,12 @@ class PropertyController extends Controller
     public function edit(Property $property)
     {
         $property = Property::find($property->id);
-        // dd($property->user->name);
-        return view('properties.edit', ['property' => $property]);
+        
+        if(Auth::user()->property_id == $property->id){
+            return view('properties.edit', ['property' => $property]);
+        }
+
+        return redirect()->route('properties.edit', ['property' => Auth::user()->property_id])->with('acceso', 'No tiene acceso a esta propiedad');
     }
 
     /**
@@ -81,6 +86,7 @@ class PropertyController extends Controller
             'coefficient'   => $request->input('coefficient'),
             'area'          => $request->input('area'),
             'live_householder'  => $request->has('live_householder'),
+            'updated'       => true,
         ]);
 
         $user = User::where('property_id', $property->id)->update([
