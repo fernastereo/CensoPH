@@ -14,7 +14,7 @@ class AlterTablePtesDropFieldPettype extends Migration
     public function up()
     {
         Schema::table('pets', function (Blueprint $table) {
-            // $table->dropForeign('pets_pet_type_id_foreign');
+            $table->dropForeign('pets_pet_type_id_foreign');
             $table->dropColumn('pet_type_id');
         });
     }
