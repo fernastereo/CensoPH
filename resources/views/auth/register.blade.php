@@ -39,11 +39,12 @@
                             </div>
                         </div>
 
+{{--
                         <div class="form-group row">
                             <label for="towers" class="col-md-4 col-form-label text-md-right">{{ __('Torre') }}</label>
 
                             <div class="col-md-4">
-                              @if($towers)
+                              @if($towers != null)
 
                                 <select id="towers" class="form-control{{ $errors->has('towers') ? ' is-invalid' : '' }} tower" name="towers">
                                   <option value="0" selected disabled>-- Seleccione --</option>
@@ -64,7 +65,6 @@
                               @endif
                             </div>
                         </div>
-{{--
                         <div class="form-group row">
                             <label for="properties" class="col-md-4 col-form-label text-md-right">{{ __('Apartamento') }}</label>
 
