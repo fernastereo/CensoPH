@@ -45,7 +45,7 @@
                             <div class="col-md-4">
                               @if($towers != null)
 
-                                <select id="towers" class="form-control{{ $errors->has('towers') ? ' is-invalid' : '' }}" name="towers">
+                                <select id="towers" class="form-control{{ $errors->has('towers') ? ' is-invalid' : '' }} tower" name="towers">
                                   <option value="0" selected disabled>-- Seleccione --</option>
                                   @foreach($towers as $tower)
                                     @if($tower->id == old('towers', $tower->id))
