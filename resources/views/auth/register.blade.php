@@ -43,7 +43,7 @@
                             <label for="towers" class="col-md-4 col-form-label text-md-right">{{ __('Torre') }}</label>
 
                             <div class="col-md-4">
-                              @if($towers != null)
+                              @if($towers)
 
                                 <select id="towers" class="form-control{{ $errors->has('towers') ? ' is-invalid' : '' }} tower" name="towers">
                                   <option value="0" selected disabled>-- Seleccione --</option>
