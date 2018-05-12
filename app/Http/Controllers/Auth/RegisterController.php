@@ -69,7 +69,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'property_id' => $data['properties'],
+            'property_id' => 1,//$data['properties'],
             'token' => str_random(50),
         ]);
 

@@ -39,7 +39,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+{{--                         <div class="form-group row">
                             <label for="towers" class="col-md-4 col-form-label text-md-right">{{ __('Torre') }}</label>
 
                             <div class="col-md-4">
@@ -70,7 +70,6 @@
 
                             <div class="col-md-4">
                                 <select id="properties" class="form-control{{ $errors->has('properties') ? ' is-invalid' : '' }} property" name="properties">
-                                  {{-- <option value="0" selected="true">-- Seleccione --</option>  --}}
                                 </select>
 
                                 @if ($errors->has('properties'))
@@ -80,7 +79,7 @@
                                 @endif
                             </div>
                         </div>
-
+ --}}
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
