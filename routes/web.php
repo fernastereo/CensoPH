@@ -30,7 +30,7 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::resource('properties', 'PropertyController');
 
-	Route::get('/habitants/create/{property_id}', 'HabitantController@create')->name('habitants.createh'); //el ? indica que es opcional el parametro
+	Route::get('/habitants/create/{property_id}', 'HabitantController@create')->name('habitants.createh');
 	Route::get('/habitants/{habitant}/active', 'HabitantController@active')->name('habitants.active');
 	Route::resource('habitants', 'HabitantController');
 
