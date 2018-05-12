@@ -17,15 +17,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/fetch', 'DynamicDependent@fetch');
+Route::get('/verify/{token}', 'DynamicDependent@verify')->name('verify');
+Route::get('/sendverification/{user}', 'DynamicDependent@reSendVerification')->name('resend');
+
 Route::middleware(['auth'])->group(function(){
 	Route::get('/home', 'HomeController@index')->name('home');
 
-	Route::get('/fetch', 'DynamicDependent@fetch');
 	Route::get('/findsomething', 'DynamicDependent@findsomething');
 	Route::get('/findallhabitants', 'DynamicDependent@findallhabitants');
 	Route::get('/findinactivehabitants', 'DynamicDependent@findinactivehabitants');
-	Route::get('/verify/{token}', 'DynamicDependent@verify')->name('verify');
-	Route::get('/sendverification/{user}', 'DynamicDependent@reSendVerification')->name('resend');
 
 	Route::resource('properties', 'PropertyController');
 
