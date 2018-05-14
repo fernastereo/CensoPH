@@ -80,7 +80,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $towers = Tower::all();
+        $towers = Tower::orderBy('id', 'desc');
         return view('auth.register', ['towers' => $towers]);
     }
 
