@@ -22,7 +22,10 @@
               @else
                 <strong>No Verificado</strong>
                 <br>
-                Si aun no ha recibido el e-mail de virificación por favor haga <a href="{{ route('resend', auth()->user()) }}">clik aqui </a>
+                Se ha enviado un mensaje de verificación a la dirección de correo electrónico que registró, por favor dirijase a su correo.
+                <br>
+                <br>
+                Si aun no ha recibido el mensaje de verificación en su correo electrónico por favor haga <a href="{{ route('resend', auth()->user()) }}">clik aqui </a>
               @endif
             </p>
             @include('partials.msg')

@@ -58,7 +58,7 @@
 
                 <div class="col-md-4">
                   <label for="rent_agency" class="form-control-sm">Agencia de Arriendos:</label>
-                  <input class="form-control form-control-sm" type="text" id="rent_agency" name="rent_agency" value="{{ old('rent_agency', $property->rent_agency) }}" placeholder="Matrícula Inmobiliaria"></input>
+                  <input class="form-control form-control-sm" type="text" id="rent_agency" name="rent_agency" value="{{ old('rent_agency', $property->rent_agency) }}" placeholder="Agencia de Arriendos"></input>
                 </div>
               </div>
 
