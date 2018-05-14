@@ -24,9 +24,9 @@ class UpdatePropertyRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone_number'  => 'string|max:255',
-            'rent_agency'   => 'string|max:255',
-            'idnumber'      => 'string|max:255',
+            'phone_number'  => 'max:255',
+            'rent_agency'   => 'max:255',
+            'idnumber'      => 'max:255',
             'coefficient'   => 'numeric|min:0',
             'area'          => 'numeric|min:0',
         ];
