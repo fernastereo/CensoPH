@@ -14,7 +14,7 @@ class DynamicDependent extends Controller
     public function fetch(Request $request){
         $data = Property::select('name', 'id')
             ->where([['tower_id', $request->id], ['registered', false]])
-            ->orderBy('name', 'asc')->get();
+            ->orderBy('id', 'asc')->get();
         return response()->json($data);
     }
 
