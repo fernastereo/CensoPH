@@ -53,7 +53,9 @@
                     <td>{{ $property->idnumber }}</td>
                     <td>
                       {{-- <a href="{{ route('properties.show', $property->id) }}" class="btn btn-primary btn-sm">Consultar</a> --}} 
-                      <a href="{{ route('properties.edit', $property->id) }}" class="btn btn-success btn-sm">Actualizar</a> 
+                      @if(auth()->user()->verified())
+                        <a href="{{ route('properties.edit', $property->id) }}" class="btn btn-success btn-sm">Actualizar</a> 
+                      @endif
                     </td>
                   </tr>
                 @empty
