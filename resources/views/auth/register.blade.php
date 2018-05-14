@@ -39,7 +39,6 @@
                             </div>
                         </div>
 
-{{--
                         <div class="form-group row">
                             <label for="towers" class="col-md-4 col-form-label text-md-right">{{ __('Torre') }}</label>
 
@@ -65,6 +64,7 @@
                               @endif
                             </div>
                         </div>
+{{--
                         <div class="form-group row">
                             <label for="properties" class="col-md-4 col-form-label text-md-right">{{ __('Apartamento') }}</label>
 
