@@ -30,7 +30,7 @@ class HomeController extends Controller
             return view('home', ['properties' => $properties]);
         }
 
-        $properties = Property::orderBy('tower_id', 'asc')->orderBy('name', 'asc')->paginate(15);
+        $properties = Property::orderBy('tower_id', 'asc')->orderBy('id', 'asc')->paginate(15);
         
         return view('properties.index', ['properties' => $properties]);
     }
