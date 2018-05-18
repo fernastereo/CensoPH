@@ -13,7 +13,7 @@ class DynamicDependent extends Controller
 {
     public function fetch(Request $request){
         $data = Property::select('name', 'id')
-            ->where([['tower_id', $request->id], ['registered', false]])
+            ->where([['tower_id', $request->id], ['registered', false], ['name', '<>', 'SUPPORT'], ['name', '<>', 'ADMON']])
             ->orderBy('id', 'asc')->get();
         return response()->json($data);
     }
