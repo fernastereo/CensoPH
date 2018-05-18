@@ -380,16 +380,16 @@
                               <div class="form-group">
                                 <label class="col-md-12 control-label" for="message">Su opinión:</label>
                                 <div class="col-md-12">
-                                  <textarea class="form-control" id="message" name="message" placeholder="Por favor ingrese su mensaje aqui..." rows="5"></textarea>
+                                  <textarea class="form-control" id="message" name="message" placeholder="Por favor ingrese su mensaje aqui..." rows="7"></textarea>
                                 </div>
                               </div>
                       
-                              <!-- Form actions -->
+                              <!-- Form actions
                               <div class="form-group">
                                 <div class="col-md-12 text-right">
                                   <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
                                 </div>
-                              </div>
+                              </div> -->
                             </fieldset>
                           {{-- </form> --}}
                         </div>
