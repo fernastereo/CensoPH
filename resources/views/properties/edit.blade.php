@@ -81,6 +81,10 @@
                       <a class="nav-link" id="pet-tab" data-toggle="tab" href="#pet" role="tab" aria-controls="pet" aria-selected="false">
                       Mascotas</a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="feedback-tab" data-toggle="tab" href="#feedback" role="tab" aria-controls="feedback" aria-selected="false">
+                      Feedback</a>
+                    </li>
                   </ul>
 
                   <div class="tab-content border-right border-left border-bottom" id="myTabContent">
@@ -125,7 +129,7 @@
                         </div>
                       </div>
                     </div>
-
+                    
                     <div class="tab-pane fade" id="habitant" role="tabpanel" aria-labelledby="habitant-tab">
                       <div class="row">  
                         <div class="mt-3 ml-1 mb-3 col-md-12 row">
@@ -360,6 +364,34 @@
                               </tbody>
                             </table>
                           </div>
+                        </div>
+                      </div>        
+                    </div>
+
+                    <div class="tab-pane fade" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
+                      <div class="row">  
+                        <div class="mt-3 ml-3 mb-3 col-md-12 row">
+                          
+                          {{-- <form class="form-horizontal" action="{{ route('properties.sendFeedback') }}" method="post">
+                            @csrf --}}
+                            <fieldset class="col-md-10">
+                              <p>Cómo te ha parecido esta aplicación? Cuentanos tu experiencia al usarla y dinos qué podemos hacer para mejorarla.</p>
+                              <!-- Message body -->
+                              <div class="form-group">
+                                <label class="col-md-12 control-label" for="message">Su opinión:</label>
+                                <div class="col-md-12">
+                                  <textarea class="form-control" id="message" name="message" placeholder="Por favor ingrese su mensaje aqui..." rows="5"></textarea>
+                                </div>
+                              </div>
+                      
+                              <!-- Form actions -->
+                              <div class="form-group">
+                                <div class="col-md-12 text-right">
+                                  <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
+                                </div>
+                              </div>
+                            </fieldset>
+                          {{-- </form> --}}
                         </div>
                       </div>        
                     </div>

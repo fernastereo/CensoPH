@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Property;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdatePropertyRequest;
 class PropertyController extends Controller
@@ -99,7 +100,23 @@ class PropertyController extends Controller
             'occupation'            => $request->input('user_occupation'),
         ]);
 
+        $message = $request->input('message');
+        if($message){
+            $data = array(
+                'name' => Auth::user()->name,
+                'property_id' => $property->id,
+                'property_name' => $property->name,
+                'tower_name' => $property->tower->name,
+                'comment' => $message,
+            );
 
+            Mail::send('emails.feedback', $data, function($message){
+                $message->from('censoph@css-sas.com', 'CensoPH-San Fernando');
+
+                $message->to('fernandoecueto@gmail.com')->subject('Feedback de San Fernando');
+            });
+        }
+        
         if($property){
             return redirect()->route('properties.edit', ['property' => $property])->with('success', 'Propiedad Actualizada Satisfactoriamente');
         }
@@ -116,5 +133,26 @@ class PropertyController extends Controller
     public function destroy(Property $property)
     {
         //
+    }
+
+    public function sendFeedback(Request $request){
+        
+
+        $property = Property::find(Auth::user()->property_id);
+        $data = array(
+            'name' => Auth::user()->name,
+            'property_id' => $property->id,
+            'property_name' => $property->name,
+            'tower_name' => $property->tower->name,
+            'comment' => $request->input('message'),
+        );
+
+        Mail::send('emails.feedback', $data, function($message){
+            $message->from('censoph@css-sas.com', 'CensoPH-San Fernando');
+
+            $message->to('fernandoecueto@gmail.com')->subject('Feedback de San Fernando');
+        });
+
+        return redirect()->route('properties.edit', ['property' => Auth::user()->property_id])->with('success', 'Comentario Enviado. Gracias!');
     }
 }

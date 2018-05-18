@@ -40,5 +40,7 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::get('/pets/create/{property_id}', 'PetController@create')->name('pets.createh');
 	Route::get('/pets/{pet}/active', 'PetController@active')->name('pets.active');
-	Route::resource('pets', 'PetController');	
+	Route::resource('pets', 'PetController');
+
+	Route::post('properties/sendFeedback/comment', 'PropertyController@sendFeedback')->name('properties.sendFeedback');
 });
