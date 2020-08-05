@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
         $properties = factory(App\Property::class, 100)
         	->create([
-        		'tower_id' => random_int(1, 3),
+        		'tower_id' => random_int(1, 2),
         	]);
 
         // $properties->each(function(App\Property $property) use ($properties){
